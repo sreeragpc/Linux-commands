@@ -16,3 +16,7 @@ sudo useradd -m -s /usr/sbin/nologin ravi
 ```
 sudo useradd -M ravi
 ```
+## useradd with expiry
+```
+sudo useradd -m username -e YYYY-MM-DD
+```
