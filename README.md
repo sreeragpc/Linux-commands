@@ -12,3 +12,7 @@ sudo id sonya
 ```
 sudo useradd -m -s /usr/sbin/nologin ravi
 ```
+## useradd without home directory
+```
+sudo useradd -M ravi
+```
