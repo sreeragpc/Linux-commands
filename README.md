@@ -20,3 +20,9 @@ sudo useradd -M ravi
 ```
 sudo useradd -m username -e YYYY-MM-DD
 ```
+
+## userdata transfer by maintaing file structure
+```
+sudo find /home/usersdata -type f -user yousuf -exec cp --parents {} /media \;
+
+```
