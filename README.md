@@ -142,3 +142,29 @@ getfacl /etc/hosts
 ls -l /etc/hosts
 
 
+### What 644 means (octal notation)
+- 6 = owner → read (4) + write (2) = rw-
+- 4 = group → read only = r--
+- 4 = others → read only = r--
+
+### Resulting permission string
+-rw-r--r--
+
+### Effect
+- Owner (root) can read and modify the file
+- Group can read the file
+- Others can read the file
+- No one except the owner can modify it
+
+### Why 644 is commonly used
+- Standard permission for system config files
+- Prevents unauthorized modification
+- Allows system services and users to read the file
+
+### Relation with ACLs
+- `chmod` sets baseline permissions
+- `setfacl` adds user-specific exceptions
+- ACLs refine permissions, they do not replace `chmod`
+
+### One-line rule
+`chmod 644` → only the owner can edit; everyone else can read
