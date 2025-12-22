@@ -72,6 +72,7 @@ sudo sshd -T | grep permitrootlogin
 ssh root@server_ip
 
 ## vi editor basics
+```
 i        # insert mode
 Esc      # normal mode
 :wq      # save and quit
@@ -79,3 +80,4 @@ Esc      # normal mode
 /word    # search forward
 n        # next match
 N        # previous match
+```
