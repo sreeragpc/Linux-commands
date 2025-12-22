@@ -81,3 +81,15 @@ Esc      # normal mode
 n        # next match
 N        # previous match
 ```
+
+
+## Archiving and Compression
+
+### Create compressed archive of a directory
+sudo tar -czf javed.tar.gz /data/javed
+
+### Create archive directly in target directory
+sudo tar -czf /home/javed.tar.gz /data/javed
+
+### List contents of a tar.gz without extracting
+tar -tzf /home/javed.tar.gz
