@@ -114,3 +114,15 @@ pwd          # print current directory
 echo ~       # show expanded home directory path
 ls /         # list top-level system directories
 
+## Grant executable permission to a script (all users)
+
+### SSH to App Server 3
+ssh banner@172.16.238.12
+
+### Grant execute permission to all users
+sudo chmod a+x /tmp/xfusioncorp.sh
+
+### Verify permissions
+ls -l /tmp/xfusioncorp.sh
+
+
