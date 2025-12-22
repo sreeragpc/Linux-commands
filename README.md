@@ -95,7 +95,7 @@ sudo tar -czf /home/javed.tar.gz /data/javed
 tar -tzf /home/javed.tar.gz
 
 ## Directory Navigation Basics (Linux)
-
+```
 ### Home directory shortcut
 ~            # current user's home directory
 cd ~         # go to home directory
@@ -113,7 +113,7 @@ pwd          # print current directory
 ### Useful checks
 echo ~       # show expanded home directory path
 ls /         # list top-level system directories
-
+```
 ## Grant executable permission to a script (all users)
 
 ### SSH to App Server 3
