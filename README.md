@@ -93,3 +93,24 @@ sudo tar -czf /home/javed.tar.gz /data/javed
 
 ### List contents of a tar.gz without extracting
 tar -tzf /home/javed.tar.gz
+
+## Directory Navigation Basics (Linux)
+
+### Home directory shortcut
+~            # current user's home directory
+cd ~         # go to home directory
+cd           # go to home directory
+
+### Root of filesystem
+/            # root directory (top of filesystem)
+cd /         # move to filesystem root
+
+### Common navigation commands
+cd ..        # move up one directory
+cd -         # switch to previous directory
+pwd          # print current directory
+
+### Useful checks
+echo ~       # show expanded home directory path
+ls /         # list top-level system directories
+
