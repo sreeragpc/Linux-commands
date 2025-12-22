@@ -125,4 +125,20 @@ sudo chmod a+x /tmp/xfusioncorp.sh
 ### Verify permissions
 ls -l /tmp/xfusioncorp.sh
 
+### Set user owner and group owner to root
+sudo chown root:root /etc/hosts
+
+### Set file permissions so others have read-only access
+sudo chmod 644 /etc/hosts
+
+### Remove all permissions for user jim
+sudo setfacl -m u:jim:--- /etc/hosts
+
+### Grant read-only permission to user jerome
+sudo setfacl -m u:jerome:r-- /etc/hosts
+
+### Verify ACLs and permissions
+getfacl /etc/hosts
+ls -l /etc/hosts
+
 
