@@ -1,3 +1,4 @@
+```
 # Linux-commands
 
 
@@ -25,4 +26,5 @@ sudo useradd -m username -e YYYY-MM-DD
 ```
 sudo find /home/usersdata -type f -user yousuf -exec cp --parents {} /media \;
 
+```
 ```
