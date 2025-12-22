@@ -168,3 +168,22 @@ ls -l /etc/hosts
 
 ### One-line rule
 `chmod 644` → only the owner can edit; everyone else can read
+
+## replace string inside a file (in-place edit)
+
+### replace all occurrences of a string in a file
+sudo sed -i 's/About/Software/g' /root/nautilus.xml
+
+### verify replacement
+grep About /root/nautilus.xml
+grep Software /root/nautilus.xml
+
+### replace string without modifying file (preview)
+sed 's/About/Software/g' /root/nautilus.xml
+
+### replace string and create backup
+sudo sed -i.bak 's/About/Software/g' /root/nautilus.xml
+
+### one-line rule
+sed -i 's/old/new/g' file
+
