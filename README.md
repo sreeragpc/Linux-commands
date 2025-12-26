@@ -187,3 +187,34 @@ sudo sed -i.bak 's/About/Software/g' /root/nautilus.xml
 ### one-line rule
 sed -i 's/old/new/g' file
 
+# become root
+sudo -i
+
+# check if cron.allow is incorrectly created as a directory
+ls -ld /etc/cron.allow
+
+# remove cron.allow directory if it exists (cron expects a file)
+rm -rf /etc/cron.allow
+
+# create cron.allow file and allow mariyam
+vi /etc/cron.allow
+# add inside:
+mariyam
+
+# create or edit cron.deny file and deny rod
+vi /etc/cron.deny
+# add inside:
+rod
+
+# set correct ownership and permissions
+chown root:root /etc/cron.allow /etc/cron.deny
+chmod 600 /etc/cron.allow /etc/cron.deny
+
+# verify access
+su - mariyam
+crontab -e
+
+su - rod
+crontab -e
+
+
