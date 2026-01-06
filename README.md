@@ -221,6 +221,12 @@ crontab -e
 systemctl get-default
 sudo systemctl set-default graphical.target
 
+# Set timezone to Australia/Adelaide
+timedatectl list-timezones | grep Adelaide
+sudo timedatectl set-timezone Australia/Adelaide
+timedatectl
+
+
 
 
 
