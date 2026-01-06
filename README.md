@@ -239,6 +239,14 @@ sudo vi /etc/security/limits.conf
 nfsuser          soft    nproc           1025
 nfsuser          hard    nproc           2024
 
+#Install required SELinux packages
+#This ensures the server has the necessary tools (like semanage and getsebool) for future configurations.
+sudo yum install -y selinux-policy selinux-policy-targeted libselinux-utils policycoreutils
+#Permanently disable SELinux
+#To disable SELinux permanently (so it remains disabled after the scheduled reboot), you must edit the /etc/selinux/config file.
 
+sudo vi /etc/selinux/config
+#Change the SELINUX line to:
+SELINUX=disabled
 
 
