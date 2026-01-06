@@ -226,6 +226,18 @@ timedatectl list-timezones | grep Adelaide
 sudo timedatectl set-timezone Australia/Adelaide
 timedatectl
 
+#Add port 8083/tcp to the public zone (Permanent)
+sudo firewall-cmd --permanent --zone=public --add-port=8083/tcp
+sudo firewall-cmd --reload
+sudo firewall-cmd --zone=public --list-ports
+# Expected output: 8083/tcp
+
+#Add limits to /etc/security/limits.conf
+sudo vi /etc/security/limits.conf
+
+# Add these lines at the bottom of the file:
+nfsuser          soft    nproc           1025
+nfsuser          hard    nproc           2024
 
 
 
