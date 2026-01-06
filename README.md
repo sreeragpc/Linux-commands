@@ -217,4 +217,10 @@ crontab -e
 su - rod
 crontab -e
 
+# Change Default Runlevel to Graphical (GUI)
+systemctl get-default
+sudo systemctl set-default graphical.target
+
+
+
 
