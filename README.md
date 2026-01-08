@@ -250,3 +250,20 @@ sudo vi /etc/selinux/config
 SELINUX=disabled
 
 
+# 1. Install the cronie package which provides the standard cron daemon
+sudo yum install -y cronie
+
+# 2. Start the crond service to begin processing scheduled tasks
+sudo systemctl start crond
+
+# 3. Enable the crond service to ensure it starts automatically on system boot
+sudo systemctl enable crond
+
+# 4. Add the specific cron job for the root user to execute every 5 minutes
+echo "*/5 * * * * echo hello > /tmp/cron_text" | sudo crontab -u root -
+
+# 5. Verify the crontab entry for the root user to ensure it was added correctly
+sudo crontab -l -u root
+
+# 6. Check the status of the crond service to confirm it is active
+sudo systemctl status crond
