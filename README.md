@@ -1,4 +1,4 @@
-# Linux-commands
+## Linux-commands
 
 ## creating and adding a user to a usergroup
 sudo groupadd nautilus_admin_users
@@ -55,7 +55,7 @@ git remote -v
 
 ## disable root ssh login (security hardening)
 sudo vi /etc/ssh/sshd_config
-# set:
+## set:
 PermitRootLogin no
 
 ## alternative (recommended) drop-in ssh config
@@ -73,197 +73,197 @@ ssh root@server_ip
 
 ## vi editor basics
 ```
-i        # insert mode
-Esc      # normal mode
-:wq      # save and quit
-:q!      # quit without saving
-/word    # search forward
-n        # next match
-N        # previous match
+i        ## insert mode
+Esc      ## normal mode
+:wq      ## save and quit
+:q!      ## quit without saving
+/word    ## search forward
+n        ## next match
+N        ## previous match
 ```
 
 
 ## Archiving and Compression
 
-### Create compressed archive of a directory
+#### Create compressed archive of a directory
 sudo tar -czf javed.tar.gz /data/javed
 
-### Create archive directly in target directory
+#### Create archive directly in target directory
 sudo tar -czf /home/javed.tar.gz /data/javed
 
-### List contents of a tar.gz without extracting
+#### List contents of a tar.gz without extracting
 tar -tzf /home/javed.tar.gz
 
 ## Directory Navigation Basics (Linux)
 ```
-### Home directory shortcut
-~            # current user's home directory
-cd ~         # go to home directory
-cd           # go to home directory
+#### Home directory shortcut
+~            ## current user's home directory
+cd ~         ## go to home directory
+cd           ## go to home directory
 
-### Root of filesystem
-/            # root directory (top of filesystem)
-cd /         # move to filesystem root
+#### Root of filesystem
+/            ## root directory (top of filesystem)
+cd /         ## move to filesystem root
 
-### Common navigation commands
-cd ..        # move up one directory
-cd -         # switch to previous directory
-pwd          # print current directory
+#### Common navigation commands
+cd ..        ## move up one directory
+cd -         ## switch to previous directory
+pwd          ## print current directory
 
-### Useful checks
-echo ~       # show expanded home directory path
-ls /         # list top-level system directories
+#### Useful checks
+echo ~       ## show expanded home directory path
+ls /         ## list top-level system directories
 ```
 ## Grant executable permission to a script (all users)
 
-### SSH to App Server 3
+#### SSH to App Server 3
 ssh banner@172.16.238.12
 
-### Grant execute permission to all users
+#### Grant execute permission to all users
 sudo chmod a+x /tmp/xfusioncorp.sh
 
-### Verify permissions
+#### Verify permissions
 ls -l /tmp/xfusioncorp.sh
 
-### Set user owner and group owner to root
+#### Set user owner and group owner to root
 sudo chown root:root /etc/hosts
 
-### Set file permissions so others have read-only access
+#### Set file permissions so others have read-only access
 sudo chmod 644 /etc/hosts
 
-### Remove all permissions for user jim
+#### Remove all permissions for user jim
 sudo setfacl -m u:jim:--- /etc/hosts
 
-### Grant read-only permission to user jerome
+#### Grant read-only permission to user jerome
 sudo setfacl -m u:jerome:r-- /etc/hosts
 
-### Verify ACLs and permissions
+#### Verify ACLs and permissions
 getfacl /etc/hosts
 ls -l /etc/hosts
 
 
-### What 644 means (octal notation)
+#### What 644 means (octal notation)
 - 6 = owner → read (4) + write (2) = rw-
 - 4 = group → read only = r--
 - 4 = others → read only = r--
 
-### Resulting permission string
+#### Resulting permission string
 -rw-r--r--
 
-### Effect
+#### Effect
 - Owner (root) can read and modify the file
 - Group can read the file
 - Others can read the file
 - No one except the owner can modify it
 
-### Why 644 is commonly used
+#### Why 644 is commonly used
 - Standard permission for system config files
 - Prevents unauthorized modification
 - Allows system services and users to read the file
 
-### Relation with ACLs
+#### Relation with ACLs
 - `chmod` sets baseline permissions
 - `setfacl` adds user-specific exceptions
 - ACLs refine permissions, they do not replace `chmod`
 
-### One-line rule
+#### One-line rule
 `chmod 644` → only the owner can edit; everyone else can read
 
 ## replace string inside a file (in-place edit)
 
-### replace all occurrences of a string in a file
+#### replace all occurrences of a string in a file
 sudo sed -i 's/About/Software/g' /root/nautilus.xml
 
-### verify replacement
+#### verify replacement
 grep About /root/nautilus.xml
 grep Software /root/nautilus.xml
 
-### replace string without modifying file (preview)
+#### replace string without modifying file (preview)
 sed 's/About/Software/g' /root/nautilus.xml
 
-### replace string and create backup
+#### replace string and create backup
 sudo sed -i.bak 's/About/Software/g' /root/nautilus.xml
 
-### one-line rule
+#### one-line rule
 sed -i 's/old/new/g' file
 
-# become root
+## become root
 sudo -i
 
-# check if cron.allow is incorrectly created as a directory
+## check if cron.allow is incorrectly created as a directory
 ls -ld /etc/cron.allow
 
-# remove cron.allow directory if it exists (cron expects a file)
+## remove cron.allow directory if it exists (cron expects a file)
 rm -rf /etc/cron.allow
 
-# create cron.allow file and allow mariyam
+## create cron.allow file and allow mariyam
 vi /etc/cron.allow
-# add inside:
+## add inside:
 mariyam
 
-# create or edit cron.deny file and deny rod
+## create or edit cron.deny file and deny rod
 vi /etc/cron.deny
-# add inside:
+## add inside:
 rod
 
-# set correct ownership and permissions
+## set correct ownership and permissions
 chown root:root /etc/cron.allow /etc/cron.deny
 chmod 600 /etc/cron.allow /etc/cron.deny
 
-# verify access
+## verify access
 su - mariyam
 crontab -e
 
 su - rod
 crontab -e
 
-# Change Default Runlevel to Graphical (GUI)
+## Change Default Runlevel to Graphical (GUI)
 systemctl get-default
 sudo systemctl set-default graphical.target
 
-# Set timezone to Australia/Adelaide
+## Set timezone to Australia/Adelaide
 timedatectl list-timezones | grep Adelaide
 sudo timedatectl set-timezone Australia/Adelaide
 timedatectl
 
-#Add port 8083/tcp to the public zone (Permanent)
+##Add port 8083/tcp to the public zone (Permanent)
 sudo firewall-cmd --permanent --zone=public --add-port=8083/tcp
 sudo firewall-cmd --reload
 sudo firewall-cmd --zone=public --list-ports
-# Expected output: 8083/tcp
+## Expected output: 8083/tcp
 
-#Add limits to /etc/security/limits.conf
+##Add limits to /etc/security/limits.conf
 sudo vi /etc/security/limits.conf
 
-# Add these lines at the bottom of the file:
+## Add these lines at the bottom of the file:
 nfsuser          soft    nproc           1025
 nfsuser          hard    nproc           2024
 
-#Install required SELinux packages
-#This ensures the server has the necessary tools (like semanage and getsebool) for future configurations.
+##Install required SELinux packages
+##This ensures the server has the necessary tools (like semanage and getsebool) for future configurations.
 sudo yum install -y selinux-policy selinux-policy-targeted libselinux-utils policycoreutils
-#Permanently disable SELinux
-#To disable SELinux permanently (so it remains disabled after the scheduled reboot), you must edit the /etc/selinux/config file.
+##Permanently disable SELinux
+##To disable SELinux permanently (so it remains disabled after the scheduled reboot), you must edit the /etc/selinux/config file.
 
 sudo vi /etc/selinux/config
-#Change the SELINUX line to:
+##Change the SELINUX line to:
 SELINUX=disabled
 
 
-# 1. Install the cronie package which provides the standard cron daemon
+## 1. Install the cronie package which provides the standard cron daemon
 sudo yum install -y cronie
 
-# 2. Start the crond service to begin processing scheduled tasks
+## 2. Start the crond service to begin processing scheduled tasks
 sudo systemctl start crond
 
-# 3. Enable the crond service to ensure it starts automatically on system boot
+## 3. Enable the crond service to ensure it starts automatically on system boot
 sudo systemctl enable crond
 
-# 4. Add the specific cron job for the root user to execute every 5 minutes
+## 4. Add the specific cron job for the root user to execute every 5 minutes
 echo "*/5 * * * * echo hello > /tmp/cron_text" | sudo crontab -u root -
 
-# 5. Verify the crontab entry for the root user to ensure it was added correctly
+## 5. Verify the crontab entry for the root user to ensure it was added correctly
 sudo crontab -l -u root
 
-# 6. Check the status of the crond service to confirm it is active
+## 6. Check the status of the crond service to confirm it is active
 sudo systemctl status crond
